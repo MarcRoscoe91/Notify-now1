@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/AddDocuments",
+      "destination": "/AddDocuments.html"
+    },
+    {
+      "source": "/MyDocuments",
+      "destination": "/MyDocuments.html"
+    },
+    {
+      "source": "/Documentdetails",
+      "destination": "/Documentdetails.html"
+    },
+    {
+      "source": "/NotificationSettings",
+      "destination": "/NotificationSettings.html"
+    },
+    {
+      "source": "/app",
+      "destination": "/app.html"
+    }
+  ]
+}

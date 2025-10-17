@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notify Now — Never Miss a Renewal</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#13a4ec">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container flex between center">
+      <a class="brand" href="/index.html"><span class="logo">🔔</span> <strong>Notify Now</strong></a>
+      <nav class="nav">
+        <a href="/AddDocuments.html">Add Documents</a>
+        <a href="/MyDocuments.html">My Documents</a>
+        <a href="/Documentdetails.html">Document Details</a>
+        <a href="/NotificationSettings.html">Notifications</a>
+        <a href="/app.html" class="button">Open App</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Never miss what matters</h1>
+      <p>Store renewal dates for insurance, MOTs, certs & more — get reminders before they expire.</p>
+      <div class="cta">
+        <a class="button primary" href="/app.html">Get Started</a>
+        <a class="button" href="/AddDocuments.html">Add a Document</a>
+      </div>
+      <p id="api-ping" class="muted"></p>
+    </section>
+
+    <section class="features grid3">
+      <article class="card">
+        <h3>Quick add</h3>
+        <p>Add a title, expiry date and optional notes in seconds.</p>
+      </article>
+      <article class="card">
+        <h3>Smart reminders</h3>
+        <p>We’ll nudge you at 30/7/1 days (configurable) before expiry.</p>
+      </article>
+      <article class="card">
+        <h3>All in one place</h3>
+        <p>Your renewals in a tidy list with filters and search.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container small muted">© <span id="y"></span> Notify Now</div>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

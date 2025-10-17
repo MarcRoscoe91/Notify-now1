@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Documents — Notify Now</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><a href="/index.html" class="brand">← Notify Now</a></div></header>
+  <main class="container">
+    <h1>Add a Document</h1>
+    <form id="add-form" class="card stack">
+      <label>Title <input id="title" required placeholder="e.g. Car Insurance"></label>
+      <label>Expiry Date <input id="expiry" type="date" required></label>
+      <label>Notes <textarea id="notes" rows="3" placeholder="Optional"></textarea></label>
+      <button class="button primary" type="submit">Save</button>
+      <p id="add-msg" class="muted"></p>
+    </form>
+  </main>
+  <script type="module">
+    import { addItem } from '/js/api.js';
+    const form = document.getElementById('add-form');
+    const msg = document.getElementById('add-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = 'Saving…';
+      try {
+        const payload = {
+          title: document.getElementById('title').value.trim(),
+          expiryDate: new Date(document.getElementById('expiry').value).toISOString(),
+          notes: (document.getElementById('notes').value || '').trim() || undefined
+        };
+        const res = await addItem(payload);
+        msg.textContent = (res && (res.message || 'Saved!')) || 'Saved!';
+        form.reset();
+      } catch (err) {
+        console.error(err); msg.textContent = 'Failed to save.';
+      }
+    });
+  </script>
+</body>
+</html>

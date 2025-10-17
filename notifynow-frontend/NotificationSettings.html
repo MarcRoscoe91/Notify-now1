@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notification Settings — Notify Now</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><a href="/index.html" class="brand">← Notify Now</a></div></header>
+  <main class="container">
+    <h1>Notification Settings</h1>
+    <form class="card stack" id="notif-form">
+      <label><input type="checkbox" id="n30" checked> 30 days before</label>
+      <label><input type="checkbox" id="n7" checked> 7 days before</label>
+      <label><input type="checkbox" id="n1" checked> 1 day before</label>
+      <button class="button primary" type="submit">Save preferences</button>
+      <p id="notif-msg" class="muted"></p>
+    </form>
+  </main>
+  <script>
+    const form = document.getElementById('notif-form');
+    const msg = document.getElementById('notif-msg');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      msg.textContent = 'Saved (placeholder).';
+    });
+  </script>
+</body>
+</html>

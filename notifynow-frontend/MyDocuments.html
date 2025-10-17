@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Documents — Notify Now</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><a href="/index.html" class="brand">← Notify Now</a></div></header>
+  <main class="container">
+    <h1>My Documents</h1>
+    <ul id="list" class="stack"></ul>
+  </main>
+  <script type="module">
+    import { listItems } from '/js/api.js';
+    const list = document.getElementById('list');
+    async function load() {
+      list.innerHTML = '<li class="muted">Loading…</li>';
+      try {
+        const items = await listItems();
+        if (!items || items.length === 0) { list.innerHTML = '<li class="muted">No documents yet.</li>'; return; }
+        list.innerHTML = items.map(i => \`
+          <li class="card">
+            <div class="row between">
+              <strong>\${i.title}</strong>
+              <span class="muted">\${new Date(i.expiryDate).toLocaleDateString()}</span>
+            </div>
+            <div class="muted small">\${i.notes || ''}</div>
+          </li>\`
+        ).join('');
+      } catch (e) {
+        console.error(e); list.innerHTML = '<li class="muted">Failed to load.</li>';
+      }
+    }
+    load();
+  </script>
+</body>
+</html>
